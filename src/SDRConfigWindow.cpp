@@ -14,7 +14,10 @@ void SDRConfigWindow::draw() {
 
 	if (ImGui::Begin(m_title.c_str(), &m_isOpen)) {
 		ImGui::InputInt("Frequency (MHz)", &frequency);
-		ImGui::SliderFloatWithSteps("Gain", &gain, 0, 20, 1);
+
+		ImGui::SliderFloatWithSteps("LNA Gain", &lna_gain, 0, 40, 8);
+		ImGui::SliderFloatWithSteps("VGA Gain", &vga_gain, 0, 62, 2);
+
 		if(ImGui::Button("Set")) {
 			sdr->setFrequency(frequency);
 		}

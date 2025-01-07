@@ -14,7 +14,10 @@ class SDRConfigWindow {
 		void setOpen(bool open) { m_isOpen = open; }
 	private:
 		int frequency;
-		float gain;
+
+		float lna_gain;
+		float vga_gain;
+
 		std::string m_title;
 		bool m_isOpen;
 		SDR* sdr;
