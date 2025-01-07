@@ -35,3 +35,18 @@ void SDR::setFrequency(long newFrequency) {
 	hackrf_set_freq(device, newFrequency);
 	frequency = newFrequency;
 }
+
+int SDR::callback(hackrf_transfer* transfer) {
+	SDR* _this = (SDR*)transfer->rx_ctx;
+	//volk_8i_s32f_convert_32f((float*)_this->stream.writeBuf, (int8_t*)transfer->buffer, 128.0f, transfer->valid_length);
+	//if (!_this->stream.swap(transfer->valid_length / 2)) { return -1; }
+
+	return 0;
+}
+
+void SDR::startRX(void* ctx) {
+	std::cout<<"Data\n";
+	SDR* _this = (SDR*)ctx;
+	hackrf_start_rx(device, callback, _this);
+}
+

@@ -4,13 +4,18 @@
 #include <GLFW/glfw3.h>
 
 #include "SDRConfigWindow.h"
+#include "ConstellationWindow.h"
 #include "SDR.h"
 
 int main(int argc, char *argv[]) {
 	if (!glfwInit()) return -1;
 
 	SDR* sdr = new SDR();
+
+	sdr->startRX(sdr);
+
 	SDRConfigWindow* sdrConfigWindow = new SDRConfigWindow("SDR Config", sdr);
+	ConstellationWindow* constellationWindow = new ConstellationWindow("Constellation");
 
 	GLFWwindow* window = glfwCreateWindow(1280, 720, "Signal Analysis", NULL, NULL);
 	glfwMakeContextCurrent(window);
@@ -32,6 +37,7 @@ int main(int argc, char *argv[]) {
 		ImGui::NewFrame();
 
 		sdrConfigWindow->draw();
+		constellationWindow->draw();
 
 		ImGui::Render();
 

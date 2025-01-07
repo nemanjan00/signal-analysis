@@ -7,9 +7,12 @@ class SDR {
 
 		long getFrequency() const;
 		void setFrequency(long frequency);
+		void startRX(void* ctx);
 	private:
 		hackrf_device* device;
 		long frequency;
 
 		void initProps();
+
+		static int callback(hackrf_transfer* transfer);
 };

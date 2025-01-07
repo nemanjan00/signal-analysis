@@ -7,8 +7,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(SignalAnalysis
 	src/main.cpp
+
 	src/SDRConfigWindow.cpp
+	src/ConstellationWindow.cpp
+
 	src/SDR.cpp
+
 	src/gui/stepped_slider.cpp
 )
 
