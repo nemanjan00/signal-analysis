@@ -19,4 +19,19 @@ SDR::SDR() {
 	}
 
 	std::cout << "Success!\n";
+
+	initProps();
+}
+
+void SDR::initProps() {
+	setFrequency(100e6);
+}
+
+long SDR::getFrequency() const {
+	return frequency;
+}
+
+void SDR::setFrequency(long newFrequency) {
+	hackrf_set_freq(device, newFrequency);
+	frequency = newFrequency;
 }

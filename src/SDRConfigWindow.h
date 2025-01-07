@@ -5,7 +5,7 @@
 
 class SDRConfigWindow {
 	public:
-		explicit SDRConfigWindow(const std::string &title = "SDR Config", const SDR* sdr = NULL);
+		explicit SDRConfigWindow(const std::string &title = "SDR Config", SDR* sdr = NULL);
 
 		void draw();
 
@@ -13,7 +13,8 @@ class SDRConfigWindow {
 		bool isOpen() const { return m_isOpen; }
 		void setOpen(bool open) { m_isOpen = open; }
 	private:
+		int frequency;
 		std::string m_title;
 		bool m_isOpen;
-		const SDR* sdr;
+		SDR* sdr;
 };
