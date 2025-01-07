@@ -1,11 +1,16 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-#include <iostream>
 #include <GLFW/glfw3.h>
+
+#include "SDRConfigWindow.h"
+#include "SDR.h"
 
 int main(int argc, char *argv[]) {
 	if (!glfwInit()) return -1;
+
+	SDR* sdr = new SDR();
+	SDRConfigWindow* sdrConfigWindow = new SDRConfigWindow("SDR Config", sdr);
 
 	GLFWwindow* window = glfwCreateWindow(1280, 720, "Signal Analysis", NULL, NULL);
 	glfwMakeContextCurrent(window);
@@ -23,18 +28,13 @@ int main(int argc, char *argv[]) {
 
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
+
 		ImGui::NewFrame();
 
-		ImGui::Begin("Signal Analysis Control");
-		static float frequency = 100.0f;
-		ImGui::InputFloat("Frequency (MHz)", &frequency);
-		if(ImGui::Button("Set")) {
-			std::cout<<"Set frequency to " << frequency << "\n";
-		}
-		ImGui::End();
+		sdrConfigWindow->draw();
 
-		// Render
 		ImGui::Render();
+
 		glViewport(0, 0, 1280, 720);
 		glClearColor(0.f, 0.f, 0.f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
