@@ -1,5 +1,6 @@
 #include "SDRConfigWindow.h"
 #include "SDR.h"
+#include "gui/stepped_slider.h"
 #include "imgui.h"
 
 SDRConfigWindow::SDRConfigWindow(const std::string &title, SDR* sdr) : m_title(title), m_isOpen(true), sdr(sdr) {
@@ -13,6 +14,7 @@ void SDRConfigWindow::draw() {
 
 	if (ImGui::Begin(m_title.c_str(), &m_isOpen)) {
 		ImGui::InputInt("Frequency (MHz)", &frequency);
+		ImGui::SliderFloatWithSteps("Gain", &gain, 0, 20, 1);
 		if(ImGui::Button("Set")) {
 			sdr->setFrequency(frequency);
 		}

@@ -9,6 +9,7 @@ add_executable(SignalAnalysis
 	src/main.cpp
 	src/SDRConfigWindow.cpp
 	src/SDR.cpp
+	src/gui/stepped_slider.cpp
 )
 
 # pkg-config
