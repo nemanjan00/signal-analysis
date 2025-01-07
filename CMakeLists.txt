@@ -23,6 +23,13 @@ find_package(PkgConfig REQUIRED)
 
 find_package(OpenGL REQUIRED)
 
+# Volk
+
+find_package(Volk REQUIRED)
+target_include_directories(SignalAnalysis PRIVATE ${VOLK_INCLUDE_DIRS})
+link_directories(${VOLK_LIBRARY_DIRS})
+target_link_libraries(SignalAnalysis PRIVATE volk)
+
 # GLFW
 
 find_package(glfw3 REQUIRED)
@@ -48,4 +55,4 @@ target_include_directories(imgui PUBLIC
 	${CMAKE_CURRENT_SOURCE_DIR}/imgui/backends
 )
 
-target_link_libraries(SignalAnalysis PRIVATE ${HACKRF_LIBRARIES} imgui glfw OpenGL::GL)
+target_link_libraries(SignalAnalysis PRIVATE ${HACKRF_LIBRARIES} imgui glfw OpenGL::GL volk)

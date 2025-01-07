@@ -14,5 +14,7 @@ class SDR {
 
 		void initProps();
 
+		float* buf;
+
 		static int callback(hackrf_transfer* transfer);
 };
